@@ -1,0 +1,23 @@
+export GRADLE_HOME=/opt/gradle/gradle-8.12
+export PATH=$GRADLE_HOME/bin:$PATH
+source ~/.bashrc
+export GRADLE_OPTS="--add-opens=java.base/java.io=ALL-UNNAMED -Xmx2g -Xms512m"
+
+http://localhost:8081/swagger-ui.html
+ó
+http://localhost:8081/swagger-ui/index.html
+
+
+SonarTOken: f9ce10ea772676e044df49aeade01b82b6aded2d
+
+ADMIN_PASSWORD=supersecreto ;SPRING_PROFILES_ACTIVE=local;ADMIN_USER=admin
+export SONAR_TOKEN=f9ce10ea772676e044df49aeade01b82b6aded2d
+
+gradle clean build spotlessApply --refresh-dependencies
+gradle sonarqube -Dsonar.token=f9ce10ea772676e044df49aeade01b82b6aded2d
+
+TOKEN_2: f9ce10ea772676e044df49aeade01b82b6aded2d
+
+Se agrega
+
+
