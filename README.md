@@ -1,7 +1,7 @@
 # 🚀 Reactive Microservice Template (Mono-Module)
 
 ## 📊 Project Health
-[![CI](https://github.com/marcoslozina/invest-alerts-reactive-backend/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/marcoslozina/invest-alerts-reactive-backend/actions/workflows/ci.yml)
+[![CI](https://github.com/marcoslozina/invest-alerts-reactive-backend/actions/workflows/ci.yml/badge.svg?branch=main&timestamp=20250630)](https://github.com/marcoslozina/invest-alerts-reactive-backend/actions/workflows/ci.yml)
 ![Coverage](https://img.shields.io/endpoint?url=https://marcoslozina.github.io/invest-alerts-reactive-backend/coverage.json&cacheSeconds=30)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=marcoslozina_invest-alerts-reactive-backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=marcoslozina_invest-alerts-reactive-backend)
 ![Dependabot](https://img.shields.io/badge/dependabot-active-brightgreen.svg)
