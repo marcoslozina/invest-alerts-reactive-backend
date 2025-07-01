@@ -6,7 +6,7 @@
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=marcoslozina_invest-alerts-reactive-backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=marcoslozina_invest-alerts-reactive-backend)
 ![Dependabot](https://img.shields.io/badge/dependabot-active-brightgreen.svg)
 ![Vulnerabilities](https://img.shields.io/endpoint?url=https://marcoslozina.github.io/invest-alerts-reactive-backend/security.json&cacheSeconds=60)
-[![Last Release](https://img.shields.io/github/v/release/marcoslozina/invest-alerts-reactive-backend?label=Release)](https://github.com/marcoslozina/invest-alerts-reactive-backend/releases)
+[![Last Release](https://img.shields.io/github/v/release/marcoslozina/invest-alerts-reactive-backend?label=Release&cacheSeconds=10)](https://github.com/marcoslozina/invest-alerts-reactive-backend/releases)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ## 🌟 Overview
 
