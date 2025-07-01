@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2025-07-01)
+
+
+### Features
+
+* subido inicial del proyecto ([ca1de8a](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/ca1de8a786a9a518e318427007c1af445c78512c))
+
 ## [1.1.1](https://github.com/marcoslozina/java-springboot-reactive-hexagonal-monomodule-template/compare/v1.1.0...v1.1.1) (2025-06-29)
 
 
