@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  template-service:
-    container_name: template-service
+  invest-alerts-service:
+    container_name: invest-alerts-service
     build:
       context: .
       dockerfile: src/main/resources/ci/Dockerfile
@@ -14,7 +14,7 @@ services:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       KAFKA_BROKER: kafka:9092
-      KAFKA_GROUP_ID: template-service
+      KAFKA_GROUP_ID: invest-alerts-service
       ADMIN_USER: ${ADMIN_USER}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
     depends_on:
@@ -119,7 +119,7 @@ services:
     container_name: prometheus
     image: prom/prometheus:latest
     volumes:
-      - ./src/main/java/com/company/project/templateservice/config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./src/main/java/com/marcoslozina/investalertss/config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     networks:

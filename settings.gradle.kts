@@ -14,4 +14,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "template-service-monomodule"
+rootProject.name = "invest-alerts-reactive-backend"

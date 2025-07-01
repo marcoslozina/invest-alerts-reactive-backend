@@ -49,7 +49,7 @@ jobs:
       - name: SonarCloud Analysis
         uses: SonarSource/sonarqube-scan-action@v5.2.0
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_2 }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_3 }}
         with:
           args: >
             -Dsonar.projectKey=marcoslozina_java-springboot-reactive-hexagonal-monomodule-template
@@ -90,7 +90,7 @@ jobs:
 
       - name: Generate security.json (from SonarCloud)
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_2 }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_3 }}
         run: |
           mkdir -p .badge-data
 
