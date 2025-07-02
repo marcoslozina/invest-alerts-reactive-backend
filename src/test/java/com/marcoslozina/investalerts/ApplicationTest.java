@@ -1,11 +1,27 @@
 package com.marcoslozina.investalerts;
-
+import com.marcoslozina.investalerts.domain.port.AssetPriceProviderPort;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.context.TestConfiguration;
 
+import static org.mockito.Mockito.mock;
+
+@SpringBootTest
+@Import(ApplicationTest.AssetProviderTestConfig.class)
 public class ApplicationTest {
 
     @Test
-    void mainRunsWithoutErrors() {
-        Application.main(new String[]{});
+    void contextLoadsSuccessfully() {
+        // Test vacío que verifica si el contexto de Spring Boot inicia sin errores
+    }
+
+    @TestConfiguration
+    static class AssetProviderTestConfig {
+        @Bean
+        public AssetPriceProviderPort assetPriceProviderPort() {
+            return mock(AssetPriceProviderPort.class);
+        }
     }
 }

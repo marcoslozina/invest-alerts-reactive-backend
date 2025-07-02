@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -31,10 +32,15 @@ class AssetControllerTest {
     private AssetService assetService;
 
     @Test
+    @WithMockUser(username = "testuser") // Simula un usuario autenticado
     void getPriceReturnsExpectedAssetPrice() {
         // Arrange
         String symbol = "BTC";
-        AssetPrice mockPrice = new AssetPrice(symbol, BigDecimal.valueOf(54321.00), Instant.parse("2025-07-02T10:15:30Z"));
+        AssetPrice mockPrice = new AssetPrice(
+            symbol,
+            BigDecimal.valueOf(54321.00),
+            Instant.parse("2025-07-02T10:15:30Z")
+        );
 
         Mockito.when(assetService.getPrice(eq(symbol)))
             .thenReturn(Mono.just(mockPrice));
@@ -51,18 +57,21 @@ class AssetControllerTest {
             .expectBody()
             .jsonPath("$.symbol").isEqualTo("BTC")
             .jsonPath("$.price").isEqualTo(54321.00)
-            .jsonPath("$.timestamp").isEqualTo("2025-07-02T10:15:30Z");
+            .jsonPath("$.timestamp")
+            .isEqualTo("2025-07-02T10:15:30Z");
     }
 
     @Test
     void getCurrentPriceReturnsParsedAssetPrice() {
+        // Arrange
+        String symbol = "BTC";
         String jsonBody = """
         {
-          "bitcoin": {
+          "BTC": {
             "usd": 12345.67
           }
         }
-    """;
+        """;
 
         WebClient webClient = WebClient.builder()
             .exchangeFunction(clientRequest -> Mono.just(
@@ -74,9 +83,10 @@ class AssetControllerTest {
             .build();
 
         PriceApiClient client = new PriceApiClient(webClient);
-        AssetPrice price = client.getCurrentPrice("bitcoin").block();
+        AssetPrice price = client.getCurrentPrice(symbol).block();
 
-        assertEquals("BITCOIN", price.getSymbol());
+        // Assert
+        assertEquals("BTC", price.getSymbol());
         assertEquals(new BigDecimal("12345.67"), price.getPrice());
     }
 }

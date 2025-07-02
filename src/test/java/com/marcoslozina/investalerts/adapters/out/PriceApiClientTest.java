@@ -23,10 +23,10 @@ class PriceApiClientTest {
         mockWebServer.start();
 
         WebClient webClient = WebClient.builder()
-            .baseUrl(mockWebServer.url("/").toString())
+            .baseUrl(mockWebServer.url("/").toString()) // Important: points to the mock server
             .build();
 
-        priceApiClient = new PriceApiClient(webClient);
+        priceApiClient = new PriceApiClient(webClient); // Uses injected mock client
     }
 
     @AfterAll
@@ -37,8 +37,15 @@ class PriceApiClientTest {
     @Test
     void getCurrentPriceReturnsParsedAssetPrice() {
         String symbol = "BTC";
-        String apiResponse = "{ \"bitcoin\": { \"usd\": 62000.00 } }";
+        String apiResponse = """
+        {
+          "BTC": {
+            "usd": 62000.00
+          }
+        }
+        """;
 
+        // Enqueue mock response
         mockWebServer.enqueue(new MockResponse()
             .setBody(apiResponse)
             .addHeader("Content-Type", "application/json"));
