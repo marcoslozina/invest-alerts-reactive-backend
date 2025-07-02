@@ -24,7 +24,7 @@ class AssetServiceTest {
     }
 
     @Test
-    void getPrice_returnsExpectedAssetPrice() {
+    void getPriceReturnsExpectedAssetPrice() {
         String symbol = "BTC";
         AssetPrice mockPrice = new AssetPrice(symbol, new BigDecimal("65000.00"), Instant.now());
 

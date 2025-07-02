@@ -35,7 +35,7 @@ class PriceApiClientTest {
     }
 
     @Test
-    void getCurrentPrice_returnsParsedAssetPrice() {
+    void getCurrentPriceReturnsParsedAssetPrice() {
         String symbol = "BTC";
         String apiResponse = "{ \"bitcoin\": { \"usd\": 62000.00 } }";
 
