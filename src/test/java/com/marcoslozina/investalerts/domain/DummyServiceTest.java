@@ -1,6 +1,6 @@
-package com.marcoslozina.investalerts.domain.src.test.java.com.company.project.templateservice;
+package com.marcoslozina.investalerts.domain;
 
-import com.marcoslozina.investalerts.domain.src.main.java.com.company.project.templateservice.DummyService;
+import com.marcoslozina.investalerts.domain.DummyService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

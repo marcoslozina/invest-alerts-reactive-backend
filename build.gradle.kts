@@ -70,6 +70,7 @@ dependencies {
     testImplementation(Dependencies.Test.archunit)
     testImplementation(Dependencies.Test.reactorTest)
     testImplementation(Dependencies.Test.springSecurityTest)
+    testImplementation(Dependencies.Test.mockWebServer)
 }
 
 // ─────────────────────────────────────────────────────────────

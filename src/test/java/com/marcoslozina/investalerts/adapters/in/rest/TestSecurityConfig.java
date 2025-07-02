@@ -1,4 +1,4 @@
-package com.marcoslozina.investalerts.controller.adapters.in.rest;
+package com.marcoslozina.investalerts.adapters.in.rest;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;

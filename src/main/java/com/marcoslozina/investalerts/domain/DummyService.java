@@ -1,4 +1,4 @@
-package com.marcoslozina.investalerts.domain.src.main.java.com.company.project.templateservice;
+package com.marcoslozina.investalerts.domain;
 
 public class DummyService {
 

@@ -42,7 +42,7 @@ object Dependencies {
         const val reactorTest = "io.projectreactor:reactor-test"
         const val springSecurityTest = "org.springframework.security:spring-security-test"
         val archunit = "com.tngtech.archunit:archunit-junit5:${Versions.archunit}"
-
+        val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
         val junitPlatformCommonsStrict = moduleWithStrictVersion(
             "org.junit.platform:junit-platform-commons", Versions.junitPlatform
         )

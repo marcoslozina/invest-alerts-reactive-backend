@@ -1,4 +1,4 @@
-package com.marcoslozina.investalerts.controller.adapters.in.rest;
+package com.marcoslozina.investalerts.adapters.in.rest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
