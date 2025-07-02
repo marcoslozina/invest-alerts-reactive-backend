@@ -1,135 +1,54 @@
-# 🚀 Reactive Microservice Template (Mono-Module)
+# 💹 Sistema de Alertas Financieras – Caso de Estudio Reactivo
 
-## 📊 Project Health
-[![CI](https://github.com/marcoslozina/invest-alerts-reactive-backend/actions/workflows/ci.yml/badge.svg?branch=main&timestamp=20250630)](https://github.com/marcoslozina/invest-alerts-reactive-backend/actions/workflows/ci.yml)
-![Total Coverage](https://img.shields.io/endpoint?url=https://marcoslozina.github.io/invest-alerts-reactive-backend/coverage.json&cacheSeconds=30)  
-[![New Code Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=marcoslozina_invest-alerts-reactive-backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=marcoslozina_invest-alerts-reactive-backend)
-![Dependabot](https://img.shields.io/badge/dependabot-active-brightgreen.svg)
-![Vulnerabilities](https://img.shields.io/endpoint?url=https://marcoslozina.github.io/invest-alerts-reactive-backend/security.json&cacheSeconds=60)
-[![Last Release](https://img.shields.io/github/v/release/marcoslozina/invest-alerts-reactive-backend?label=Release&cacheSeconds=10)](https://github.com/marcoslozina/invest-alerts-reactive-backend/releases)
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-## 🌟 Overview
+### 🧪 Estado del Proyecto
 
-Plantilla productiva de microservicio reactivo con Spring Boot 3.2, basada en Arquitectura Hexagonal, diseñada con Java 21 y WebFlux para entornos cloud-native.
+[![CI](https://img.shields.io/badge/CI-passing-brightgreen)]()
+[![Total Coverage](https://img.shields.io/badge/Total_Coverage-91.3%25-brightgreen)]()
+[![New Coverage](https://img.shields.io/badge/New_Coverage-100%25-brightgreen)]()
+[![Quality Gate](https://img.shields.io/badge/Quality_Gate-passed-brightgreen)]()
+[![Dependabot](https://img.shields.io/badge/Dependabot-active-blue)]()
+[![Vulnerabilities](https://img.shields.io/badge/Vulnerabilities-0-brightgreen)]()
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
-## ✨ Beneficios de la Arquitectura
+---
 
-- 🧱 Fronteras modulares estrictas
-- ↔️ Flujo de dependencias claro: `domain ← application ← adapters`
-- 🧪 Testabilidad independiente por capa
-- 🚀 Builds paralelos por módulo
-- 🔒 Configuraciones de seguridad aisladas
+## 📘 Descripción
 
-## 🛠️ Stack Tecnológico
+Este proyecto implementa un **sistema de alertas financieras en tiempo real**, desarrollado como **caso de estudio educativo y profesional**.  
+El backend está construido en **Java 21 con Spring Boot WebFlux**, siguiendo principios de **arquitectura hexagonal**, y el frontend es una SPA desarrollada en **React + Vite**.
 
-### Framework Principal
+La solución permite:
+- Consultar precios actuales e históricos de criptoactivos.
+- Registrar alertas de precio personalizadas.
+- Recibir notificaciones en tiempo real vía streaming (SSE).
 
-| Componente     | Versión | Módulo         |
-|----------------|---------|----------------|
-| Java           | 21      | Todos          |
-| Spring Boot    | 3.2.5   | Infrastructure |
-| Spring WebFlux | 3.2.5   | Adapters:In    |
-| Gradle (KTS)   | 8.7     | Raíz           |
+---
 
-### Persistencia
+## ⚙️ Backend – Roadmap técnico
 
-| Componente | Versión | Módulo       |
-|------------|---------|--------------|
-| R2DBC      | 3.2.5   | Adapters:Out |
-| Flyway     | 9.22.3  | Adapters:Out |
+| Paso | Funcionalidad principal                                    | Conceptos clave                            |
+|------|------------------------------------------------------------|---------------------------------------------|
+| 1️⃣   | `GET /assets/price` – Precio actual                       | WebClient, Mono, puertos                    |
+| 2️⃣   | `GET /assets/history` – Historial in-memory               | Flux, almacenamiento reactivo, transformación |
+| 3️⃣   | `POST /alerts` – Registro de alertas                      | Validación, DTOs, dominio hexagonal         |
+| 4️⃣   | `GET /alerts/stream` – Emisión por SSE                    | Intervalo, filtros, backpressure            |
+| 5️⃣   | Resiliencia y errores                                     | timeout, retryWhen, manejo global           |
+| 6️⃣   | Tests y pruebas integradas                                | StepVerifier, WebClient, WireMock           |
+| 7️⃣   | Observabilidad y cache                                    | doOnNext, Micrometer, logging               |
+| 8️⃣   | (Opcional) Webhooks o Telegram                            | Puerto de salida con estrategia             |
+| 9️⃣   | (Opcional) Seguridad reactiva con JWT o Keycloak          | Filtros + autorización                      |
 
-### Observabilidad
+---
 
-| Componente       | Versión | Módulo         |
-|------------------|---------|----------------|
-| Micrometer       | 1.12.3  | Infrastructure |
-| Logstash Logback | 7.4     | Shared         |
-| SonarCloud       | Latest  | CI/CD          |
+## 🧑‍💻 Frontend – Roadmap React
 
-### Seguridad
+| Paso        | Funcionalidad                                  | Herramientas clave                      |
+|-------------|------------------------------------------------|------------------------------------------|
+| 1️⃣          | Crear base con Vite + TypeScript               | Vite, React, TS                          |
+| 2️⃣          | Mostrar precio actual (`GET /assets/price`)    | Axios, Hook, Card                        |
+| 3️⃣          | Mostrar gráfico de historial (`/assets/history`)| Recharts, graficación dinámica          |
+| 4️⃣          | Formulario de alertas                          | Formik, Yup, validaciones                |
+| 5️⃣          | Visualizar alertas activas                     | Server-Sent Events (SSE), streaming      |
 
-| Componente       | Versión | Uso                          |
-|------------------|---------|-------------------------------|
-| Dependabot       | Latest  | Actualización dependencias    |
-| GitHub Security  | Latest  | Alertas vulnerabilidades      |
-| OWASP DC         | 8.4.1   | Escaneo CI/CD                 |
-
-## 🔄 CI/CD Pipeline
-
-![CI/CD Diagram](docs/images/cicd-diagram.png)
-
-### 🔧 Etapas del Pipeline
-
-- **Build Paralelo**: Compilación independiente por módulo
-- **Security Scan**:
-    - OWASP Dependency Check
-    - CodeQL Analysis
-    - Dependabot alerts
-- **Testing**:
-    - Unit tests (por capa)
-    - Integration tests (Testcontainers)
-    - Architecture tests (ArchUnit)
-- **Quality Gate**:
-    - SonarCloud analysis
-    - Coverage enforcement (80% mínimo)
-- **Release**:
-    - Versionado semántico automático
-    - CHANGELOG generation
-    - Artifact publication
-
-## 🔍 Herramientas de Calidad y Seguridad
-
-### 🔒 Seguridad Automatizada
-
-- **Dependabot**: Actualización diaria de dependencias vulnerables
-- **GitHub Security Alerts**: Monitoreo continuo de vulnerabilidades (CVE)
-- **OWASP Dependency Check**: Escaneo en CI con reporte HTML
-- **CodeQL**: Análisis estático de vulnerabilidades en el código
-
-### 📊 Calidad de Código
-
-- **SonarCloud**:
-    - Análisis estático continuo
-    - Reglas personalizadas para arquitectura hexagonal
-    - Gate de calidad con métricas personalizadas
-- **Release Please**:
-    - Automatización de releases semánticas
-    - Generación de `CHANGELOG.md`
-    - Manejo de conventional commits
-
-## 🚀 Getting Started
-
-### 🔧 Comandos de Desarrollo
-
-```bash
-# Ejecutar con live reload
-./gradlew :infrastructure:bootRun --continuous
-
-# Ejecutar security scan local
-./gradlew dependencyCheckAnalyze
-
-# Generar reporte para SonarCloud
-./gradlew jacocoRootReport sonarqube
-
-# Ver dependencias vulnerables
-./gradlew dependencyUpdates -Drevision=release
-```
-
-## 🔍 Security Workflow
-
-![Security Workflow](docs/images/security-diagram.png)
-
-## 🛡️ Políticas de Seguridad
-
-- Escaneo diario automático de dependencias
-- Bloqueo de merges con vulnerabilidades críticas
-- Requerimiento de 2 approvals para actualizaciones mayores
-- Notificaciones Slack para alertas de seguridad
-
-## 📜 Licencia
-
-Este proyecto está licenciado bajo la licencia MIT. Ver `LICENSE` para más detalles.
-
-## 🔍 Security Policy
-
-Para reportar vulnerabilidades de seguridad, por favor consulta nuestra Política de Seguridad y utiliza GitHub Security Advisories. Todas las vulnerabilidades serán investigadas dentro de las 24 horas.
+📁 Estructura recomendada:
