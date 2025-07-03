@@ -13,6 +13,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.mockito.Mockito.when;
 
 @WebFluxTest(controllers = AssetController.class)
 class AssetControllerTest {
@@ -89,4 +91,23 @@ class AssetControllerTest {
         assertEquals("BTC", price.getSymbol());
         assertEquals(new BigDecimal("12345.67"), price.getPrice());
     }
+
+    @Test
+    @WithMockUser(username = "testuser")
+    void shouldReturnHistory() {
+        AssetPrice p1 = new AssetPrice("BTC", BigDecimal.valueOf(1), Instant.now());
+        AssetPrice p2 = new AssetPrice("BTC", BigDecimal.valueOf(2), Instant.now());
+
+        when(assetService.getHistory("BTC")).thenReturn(Flux.just(p1, p2));
+
+        webTestClient.get().uri("/assets/history?symbol=BTC")
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody()
+            .jsonPath("$[0].symbol").isEqualTo("BTC")
+            .jsonPath("$[0].price").isEqualTo(1)
+            .jsonPath("$[1].symbol").isEqualTo("BTC")
+            .jsonPath("$[1].price").isEqualTo(2);
+    }
+
 }

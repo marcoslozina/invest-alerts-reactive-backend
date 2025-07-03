@@ -12,30 +12,58 @@ import java.time.Instant;
 
 import static org.mockito.Mockito.*;
 
+import com.marcoslozina.investalerts.domain.model.AssetPrice;
+import com.marcoslozina.investalerts.domain.port.AssetPriceHistoryPort;
+import com.marcoslozina.investalerts.domain.port.AssetPriceProviderPort;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
+
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
+
 class AssetServiceTest {
 
-    private AssetPriceProviderPort providerPort;
-    private AssetService assetService;
+    private AssetPriceProviderPort provider;
+    private AssetPriceHistoryPort history;
+    private AssetService service;
 
     @BeforeEach
     void setUp() {
-        providerPort = mock(AssetPriceProviderPort.class);
-        assetService = new AssetService(providerPort);
+        provider = mock(AssetPriceProviderPort.class);
+        history = mock(AssetPriceHistoryPort.class);
+        service = new AssetService(provider, history);
     }
 
     @Test
-    void getPriceReturnsExpectedAssetPrice() {
-        String symbol = "BTC";
-        AssetPrice mockPrice = new AssetPrice(symbol, new BigDecimal("65000.00"), Instant.now());
+    void shouldSaveAndReturnPrice() {
+        AssetPrice price = new AssetPrice("BTC", BigDecimal.valueOf(60000), Instant.now());
 
-        when(providerPort.getCurrentPrice(symbol)).thenReturn(Mono.just(mockPrice));
+        when(provider.getCurrentPrice("BTC")).thenReturn(Mono.just(price));
+        when(history.savePrice(price)).thenReturn(Mono.empty());
 
-        StepVerifier.create(assetService.getPrice(symbol))
-            .expectNextMatches(assetPrice ->
-                assetPrice.getSymbol().equals("BTC") &&
-                    assetPrice.getPrice().compareTo(new BigDecimal("65000.00")) == 0)
+        StepVerifier.create(service.getPrice("BTC"))
+            .expectNext(price)
             .verifyComplete();
 
-        verify(providerPort).getCurrentPrice(symbol);
+        verify(history).savePrice(price);
+    }
+
+    @Test
+    void shouldReturnHistory() {
+        AssetPrice p1 = new AssetPrice("BTC", BigDecimal.valueOf(1), Instant.now());
+        AssetPrice p2 = new AssetPrice("BTC", BigDecimal.valueOf(2), Instant.now());
+
+        when(history.getHistory("BTC")).thenReturn(Flux.fromIterable(List.of(p1, p2)));
+
+        StepVerifier.create(service.getHistory("BTC"))
+            .expectNext(p1)
+            .expectNext(p2)
+            .verifyComplete();
     }
 }
