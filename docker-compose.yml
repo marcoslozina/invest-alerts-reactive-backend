@@ -119,7 +119,7 @@ services:
     container_name: prometheus
     image: prom/prometheus:latest
     volumes:
-      - ./src/main/java/com/marcoslozina/investalertss/config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./src/main/java/com/marcoslozina/investalerts/config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     networks:
