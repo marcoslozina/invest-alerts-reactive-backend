@@ -5,6 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Primary;
 
 import static org.mockito.Mockito.mock;
 
@@ -20,6 +21,7 @@ public class ApplicationTest {
     @TestConfiguration
     static class AssetProviderTestConfig {
         @Bean
+        @Primary
         public AssetPriceProviderPort assetPriceProviderPort() {
             return mock(AssetPriceProviderPort.class);
         }

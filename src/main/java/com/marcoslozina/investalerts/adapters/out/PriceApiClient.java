@@ -1,6 +1,8 @@
 package com.marcoslozina.investalerts.adapters.out;
 
 import com.marcoslozina.investalerts.domain.model.AssetPrice;
+import com.marcoslozina.investalerts.domain.port.AssetPriceProviderPort;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -8,8 +10,8 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Locale;
 import java.util.Map;
-
-public class PriceApiClient {
+@Component
+public class PriceApiClient  implements AssetPriceProviderPort {
 
     private final WebClient webClient;
 
@@ -17,6 +19,7 @@ public class PriceApiClient {
         this.webClient = webClient;
     }
 
+    @Override
     public Mono<AssetPrice> getCurrentPrice(String symbol) {
         String normalizedSymbol = symbol.toUpperCase(Locale.ROOT);
 
