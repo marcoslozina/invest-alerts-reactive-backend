@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.1](https://github.com/marcoslozina/invest-alerts-reactive-backend/compare/v1.0.0...v1.0.1) (2025-07-04)
+
+
+### Bug Fixes
+
+* fix boot run ([d802d73](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/d802d733e19385279930d306ecdc39a28e66d778))
+* fix ci config ([c6cf7dd](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/c6cf7dd0f8efd98cd9bc170eb2396fc64c7ec092))
+* fix readme ([bac1856](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/bac18565970ae55c15d2d322bf4728194dcb9ae4))
+* fix sonar coverage ([c391630](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/c39163001416e70f0f24dc86b903765aef10b031))
+* fix test name ([e69839f](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/e69839f2b66c71e919567c0aa7624824dc3fdeec))
+* fix unit test ([a36b03c](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/a36b03c7e159f99154d256e5f1d19ca4cf01ce9a))
+* prometheus ([47be892](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/47be892b856f4ad97d83ea35e68dab6b63826c16))
+* update readme ([c48c557](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/c48c557899a2b7efc5e4c063aa5ce421f62a9448))
+
 ## 1.0.0 (2025-07-01)
 
 
