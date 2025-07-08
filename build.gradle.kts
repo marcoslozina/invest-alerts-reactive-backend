@@ -52,6 +52,13 @@ dependencies {
     implementation(Dependencies.Spring.bootWebflux)
     implementation(Dependencies.Spring.bootSecurity)
     implementation(Dependencies.Spring.bootOauth2)
+    // Lombok
+    compileOnly(Dependencies.Build.lombok)
+    annotationProcessor(Dependencies.Build.lombok)
+
+    // Lombok para tests (si se usa en tests)
+    testCompileOnly(Dependencies.Build.lombok)
+    testAnnotationProcessor(Dependencies.Build.lombok)
 
     // 📊 Observability, 📘 API Docs, ✅ Validation
     implementation(Dependencies.Observability.micrometerPrometheus)

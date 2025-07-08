@@ -20,31 +20,11 @@ public class PriceApiClient  implements AssetPriceProviderPort {
     }
 
     @Override
-    public Mono<AssetPrice> getCurrentPrice(String symbol) {
-        String normalizedSymbol = symbol.toUpperCase(Locale.ROOT);
-
+    public Mono<Double> getCurrentPrice(String symbol) {
         return webClient.get()
-            .uri("/price") // esta ruta es ficticia y no importa en test porque se mockea
+            .uri("/price?symbol=" + symbol)
             .retrieve()
-            .bodyToMono(Map.class)
-            .map(response -> {
-                Map<String, Object> coin = (Map<String, Object>) response.get(normalizedSymbol);
-
-                if (coin == null) {
-                    throw new IllegalArgumentException("Símbolo no soportado: " + normalizedSymbol);
-                }
-
-                Object usdValue = coin.get("usd");
-
-                if (usdValue == null) {
-                    throw new IllegalArgumentException("Falta campo 'usd' para el símbolo: " + normalizedSymbol);
-                }
-
-                return new AssetPrice(
-                    normalizedSymbol,
-                    new BigDecimal(usdValue.toString()),
-                    Instant.now()
-                );
-            });
+            .bodyToMono(AssetPrice.class)
+            .map(assetPrice -> assetPrice.getPrice().doubleValue());
     }
 }

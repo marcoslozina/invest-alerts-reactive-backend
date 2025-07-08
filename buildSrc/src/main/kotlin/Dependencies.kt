@@ -11,6 +11,10 @@ object Dependencies {
         const val securityConfig = "org.springframework.security:spring-security-config"
     }
 
+    object Build {
+        val lombok = "org.projectlombok:lombok:${Versions.lombok}"
+    }
+
     object Cloud {
         const val vaultConfig = "org.springframework.cloud:spring-cloud-starter-vault-config"
     }

@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
+import java.time.Instant;
+
 @Service
 public class AssetService {
 
@@ -21,7 +24,8 @@ public class AssetService {
 
     public Mono<AssetPrice> getPrice(String symbol) {
         return priceProvider.getCurrentPrice(symbol)
-            .flatMap(price -> priceHistory.savePrice(price).thenReturn(price));
+            .map(price -> new AssetPrice(symbol, BigDecimal.valueOf(price), Instant.now()))
+            .flatMap(assetPrice -> priceHistory.savePrice(assetPrice).thenReturn(assetPrice));
     }
 
     public Flux<AssetPrice> getHistory(String symbol) {

@@ -16,15 +16,15 @@ public class InMemoryAssetPriceHistoryAdapter implements AssetPriceHistoryPort {
     private final int maxSize = 20;
 
     @Override
-    public Mono<Void> savePrice(AssetPrice price) {
-        historyMap.compute(price.getSymbol(), (symbol, deque) -> {
+    public Mono<Void> savePrice(AssetPrice assetPrice) {
+        historyMap.compute(assetPrice.getSymbol(), (symbol, deque) -> {
             if (deque == null) {
                 deque = new ArrayDeque<>();
             }
             if (deque.size() >= maxSize) {
                 deque.removeFirst();
             }
-            deque.addLast(price);
+            deque.addLast(assetPrice);
             return deque;
         });
         return Mono.empty();
@@ -32,8 +32,6 @@ public class InMemoryAssetPriceHistoryAdapter implements AssetPriceHistoryPort {
 
     @Override
     public Flux<AssetPrice> getHistory(String symbol) {
-        Deque<AssetPrice> deque = historyMap.get(symbol);
-        if (deque == null) return Flux.empty();
-        return Flux.fromIterable(new ArrayList<>(deque));
+        return Flux.fromIterable(historyMap.getOrDefault(symbol, new ArrayDeque<>()));
     }
 }

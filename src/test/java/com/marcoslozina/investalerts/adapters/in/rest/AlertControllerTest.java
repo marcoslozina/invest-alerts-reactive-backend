@@ -1,7 +1,7 @@
 package com.marcoslozina.investalerts.adapters.in.rest;
 
 import com.marcoslozina.investalerts.adapters.in.web.dto.PriceAlertRequest;
-import com.marcoslozina.investalerts.domain.model.PriceAlert;
+import com.marcoslozina.investalerts.domain.model.AlertPrice;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
@@ -26,10 +26,10 @@ public class AlertControllerTest {
         PriceAlertRequest request = new PriceAlertRequest();
         request.symbol = "BTC";
         request.threshold = 70000;
-        request.type = PriceAlert.AlertType.GREATER_THAN;
+        request.type = AlertPrice.AlertType.GREATER_THAN;
 
-        PriceAlert alert = new PriceAlert("BTC", 70000, PriceAlert.AlertType.GREATER_THAN);
-        when(registerAlertService.register("BTC", 70000, PriceAlert.AlertType.GREATER_THAN)).thenReturn(alert);
+        AlertPrice alert = new AlertPrice("BTC", 70000, AlertPrice.AlertType.GREATER_THAN);
+        when(registerAlertService.register("BTC", 70000, AlertPrice.AlertType.GREATER_THAN)).thenReturn(alert);
 
         webTestClient.post()
             .uri("/alerts")
@@ -43,6 +43,6 @@ public class AlertControllerTest {
             .jsonPath("$.alert.threshold").isEqualTo(70000.0)
             .jsonPath("$.alert.type").isEqualTo("GREATER_THAN");
 
-        verify(registerAlertService, times(1)).register("BTC", 70000, PriceAlert.AlertType.GREATER_THAN);
+        verify(registerAlertService, times(1)).register("BTC", 70000, AlertPrice.AlertType.GREATER_THAN);
     }
 }

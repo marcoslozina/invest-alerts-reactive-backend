@@ -1,10 +1,9 @@
 package com.marcoslozina.investalerts.adapters.in.web.dto;
 
 
-import com.marcoslozina.investalerts.domain.model.PriceAlert;
+import com.marcoslozina.investalerts.domain.model.AlertType;
 
 public class PriceAlertRequest {
     public String symbol;
     public double threshold;
-    public PriceAlert.AlertType type;
-}
+    public AlertType type;}

@@ -1,0 +1,30 @@
+# 1. Eliminar configuraciones anteriores rotas (java y javac)
+sudo update-alternatives --remove-all java
+sudo update-alternatives --remove-all javac
+
+# 2. Registrar Java 21 como nueva alternativa
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-21-openjdk-amd64/bin/java 2111
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac 2111
+
+# 3. Establecer Java 21 como predeterminado
+sudo update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
+sudo update-alternatives --set javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac
+
+# 4. Verificar que esté activo
+java -version
+javac -version
+
+# 5. Agregar a tu configuración para que JAVA_HOME sea coherente (ajustado a bash o zsh)
+echo 'export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64' >> ~/.bashrc
+echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
+
+# Si usás Zsh en lugar de Bash:
+# echo 'export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64' >> ~/.zshrc
+# echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.zshrc
+
+# 6. Aplicar los cambios en la terminal actual
+source ~/.bashrc
+
+# 7. Confirmar entorno
+echo $JAVA_HOME
+java -version

@@ -1,11 +1,12 @@
 package com.marcoslozina.investalerts.domain.model;
 
-public class PriceAlert {
+public class AlertPrice {
+
     private final String symbol;
     private final double threshold;
-    private final AlertType type;
+    private final AlertType type; // puede ser ABOVE o BELOW
 
-    public PriceAlert(String symbol, double threshold, AlertType type) {
+    public AlertPrice(String symbol, double threshold, AlertType type) {
         this.symbol = symbol;
         this.threshold = threshold;
         this.type = type;
@@ -23,7 +24,10 @@ public class PriceAlert {
         return type;
     }
 
-    public enum AlertType {
-        GREATER_THAN, LESS_THAN
+    public boolean isTriggeredBy(double currentPrice) {
+        return switch (type) {
+            case ABOVE -> currentPrice >= threshold;
+            case BELOW -> currentPrice <= threshold;
+        };
     }
 }
