@@ -2,6 +2,9 @@
 
     <property name="LOG_FILE" value="logs/app.log"/>
 
+    <!-- Logger específico para tu app en nivel DEBUG -->
+    <logger name="com.marcoslozina" level="DEBUG" />
+
     <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
@@ -11,7 +14,11 @@
                 <threadName />
                 <message />
                 <arguments />
-                <mdc />
+                <mdc>
+                    <!-- Preparado para trazabilidad distribuida -->
+                    <mdcKey>traceId</mdcKey>
+                    <mdcKey>spanId</mdcKey>
+                </mdc>
                 <stackTrace />
             </providers>
         </encoder>
@@ -31,7 +38,10 @@
                 <threadName />
                 <message />
                 <arguments />
-                <mdc />
+                <mdc>
+                    <mdcKey>traceId</mdcKey>
+                    <mdcKey>spanId</mdcKey>
+                </mdc>
                 <stackTrace />
             </providers>
         </encoder>

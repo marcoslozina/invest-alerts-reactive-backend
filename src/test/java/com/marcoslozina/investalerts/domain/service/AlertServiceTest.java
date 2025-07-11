@@ -1,13 +1,13 @@
 package com.marcoslozina.investalerts.domain.service;
 
-
 import com.marcoslozina.investalerts.domain.model.AlertPrice;
 import com.marcoslozina.investalerts.domain.model.AlertType;
 import com.marcoslozina.investalerts.domain.port.AlertStoragePort;
 import com.marcoslozina.investalerts.domain.port.AssetPriceProviderPort;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Mono;
@@ -24,8 +24,12 @@ class AlertServiceTest {
     @Mock
     private AssetPriceProviderPort priceProvider;
 
-    @InjectMocks
     private AlertService alertService;
+
+    @BeforeEach
+    void setup() {
+        alertService = new AlertService(alertStorage, priceProvider, new SimpleMeterRegistry());
+    }
 
     @Test
     void shouldTriggerGreaterThanAlert() {

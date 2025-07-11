@@ -3,6 +3,7 @@ package com.marcoslozina.investalerts.adapters.in.rest;
 import com.marcoslozina.investalerts.adapters.out.PriceApiClient;
 import com.marcoslozina.investalerts.application.AssetService;
 import com.marcoslozina.investalerts.domain.model.AssetPrice;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +82,7 @@ class AssetControllerTest {
             ))
             .build();
 
-        PriceApiClient client = new PriceApiClient(webClient);
+        PriceApiClient client = new PriceApiClient(webClient, new SimpleMeterRegistry());
 
         Double priceValue = client.getCurrentPrice(symbol).block(); // ✅ ya no lanza excepción
         AssetPrice price = new AssetPrice(symbol, BigDecimal.valueOf(priceValue),

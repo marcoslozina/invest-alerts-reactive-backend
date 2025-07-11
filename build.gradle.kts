@@ -69,7 +69,9 @@ dependencies {
     testAnnotationProcessor(Dependencies.Build.lombok)
 
     // 📊 Observabilidad, Docs y Validaciones
+    implementation(Dependencies.Observability.micrometerCore)
     implementation(Dependencies.Observability.micrometerPrometheus)
+    implementation(Dependencies.Observability.springBootActuator)
     implementation(Dependencies.OpenAPI.springdocWebflux)
     implementation(Dependencies.Validation.jakartaValidation)
     implementation(Dependencies.Validation.hibernateValidator)
@@ -135,4 +137,3 @@ tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
     enabled = true
     archiveFileName.set("app.jar")
 }
-

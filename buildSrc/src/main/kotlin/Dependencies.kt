@@ -20,8 +20,9 @@ object Dependencies {
     }
 
     object Observability {
-        val micrometerPrometheus = "io.micrometer:micrometer-registry-prometheus:${Versions.micrometer}"
-    }
+        const val micrometerCore = "io.micrometer:micrometer-core:${Versions.micrometer}"
+        const val micrometerPrometheus = "io.micrometer:micrometer-registry-prometheus:${Versions.micrometer}"
+        const val springBootActuator = "org.springframework.boot:spring-boot-starter-actuator"    }
 
     object Logging {
         val logstashLogback = "net.logstash.logback:logstash-logback-encoder:${Versions.logstashLogback}"

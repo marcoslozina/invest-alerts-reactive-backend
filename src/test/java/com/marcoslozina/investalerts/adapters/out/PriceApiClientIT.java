@@ -1,5 +1,6 @@
 package com.marcoslozina.investalerts.adapters.out;
 
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
@@ -32,7 +33,8 @@ class PriceApiClientIT {
             .baseUrl(baseUrl)
             .build();
 
-        client = new PriceApiClient(webClient);
+        // Nuevo: pasamos también un SimpleMeterRegistry
+        client = new PriceApiClient(webClient, new SimpleMeterRegistry());
     }
 
     @AfterAll
