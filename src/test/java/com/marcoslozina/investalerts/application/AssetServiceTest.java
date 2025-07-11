@@ -13,6 +13,7 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -58,6 +59,46 @@ class AssetServiceTest {
 
         StepVerifier.create(service.getPrice(symbol))
             .verifyComplete();
+
+        verify(provider).getCurrentPrice(symbol);
+        verify(history, never()).savePrice(any());
+    }
+
+    @Test
+    void shouldCompleteWhenNoPriceAvailable() {
+        when(provider.getCurrentPrice("BTC")).thenReturn(Mono.empty());
+
+        StepVerifier.create(service.getPrice("BTC"))
+            .expectComplete()
+            .verify();
+    }
+
+    @Test
+    void shouldReturnPriceAfterDelay() {
+        when(provider.getCurrentPrice("BTC")).thenReturn(
+            Mono.just(60000.0).delayElement(Duration.ofMillis(300))
+        );
+        when(history.savePrice(any())).thenReturn(Mono.empty());
+
+        StepVerifier.withVirtualTime(() -> service.getPrice("BTC"))
+            .thenAwait(Duration.ofMillis(300))
+            .expectNextMatches(price -> price.getPrice().compareTo(BigDecimal.valueOf(60000)) == 0)
+            .verifyComplete();
+    }
+
+    @Test
+    void shouldErrorWhenProviderFails() {
+        String symbol = "BTC";
+        RuntimeException error = new RuntimeException("Provider unavailable");
+
+        when(provider.getCurrentPrice(symbol)).thenReturn(Mono.error(error));
+
+        StepVerifier.create(service.getPrice(symbol))
+            .expectErrorMatches(throwable ->
+                throwable instanceof RuntimeException &&
+                    throwable.getMessage().equals("Provider unavailable")
+            )
+            .verify();
 
         verify(provider).getCurrentPrice(symbol);
         verify(history, never()).savePrice(any());
