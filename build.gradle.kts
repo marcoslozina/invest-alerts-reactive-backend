@@ -3,6 +3,15 @@ import org.gradle.testing.jacoco.tasks.JacocoReport
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // ─────────────────────────────────────────────────────────────
+// 📦 Repositorios
+// ─────────────────────────────────────────────────────────────
+repositories {
+    mavenCentral()
+    maven("https://repo1.maven.org/maven2/")
+    maven("https://jitpack.io")
+}
+
+// ─────────────────────────────────────────────────────────────
 // 📦 Plugins
 // ─────────────────────────────────────────────────────────────
 plugins {
@@ -52,15 +61,14 @@ dependencies {
     implementation(Dependencies.Spring.bootWebflux)
     implementation(Dependencies.Spring.bootSecurity)
     implementation(Dependencies.Spring.bootOauth2)
-    // Lombok
+
+    // 🧬 Lombok
     compileOnly(Dependencies.Build.lombok)
     annotationProcessor(Dependencies.Build.lombok)
-
-    // Lombok para tests (si se usa en tests)
     testCompileOnly(Dependencies.Build.lombok)
     testAnnotationProcessor(Dependencies.Build.lombok)
 
-    // 📊 Observability, 📘 API Docs, ✅ Validation
+    // 📊 Observabilidad, Docs y Validaciones
     implementation(Dependencies.Observability.micrometerPrometheus)
     implementation(Dependencies.OpenAPI.springdocWebflux)
     implementation(Dependencies.Validation.jakartaValidation)
@@ -78,6 +86,7 @@ dependencies {
     testImplementation(Dependencies.Test.reactorTest)
     testImplementation(Dependencies.Test.springSecurityTest)
     testImplementation(Dependencies.Test.mockWebServer)
+    testImplementation(Dependencies.Test.jakartaServletApi)
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -119,10 +128,11 @@ tasks.named<JacocoReport>("jacocoTestReport") {
 // ⚙️ Spring Boot executable JAR
 // ─────────────────────────────────────────────────────────────
 tasks.named<Jar>("jar") {
-    enabled = false // ❌ Desactiva el JAR plano
+    enabled = false
 }
 
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
-    enabled = true // ✅ Activa el JAR ejecutable
+    enabled = true
     archiveFileName.set("app.jar")
 }
+

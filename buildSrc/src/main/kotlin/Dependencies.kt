@@ -41,15 +41,16 @@ object Dependencies {
     object Test {
         val junitApi = "org.junit.jupiter:junit-jupiter-api:${Versions.junit}"
         val junitEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
-        val wiremock = "com.github.tomakehurst:wiremock-jre8:${Versions.wiremock}"
         val restAssured = "io.rest-assured:rest-assured:${Versions.restAssured}"
         const val reactorTest = "io.projectreactor:reactor-test"
         const val springSecurityTest = "org.springframework.security:spring-security-test"
+        val jettyUtil = "org.eclipse.jetty:jetty-util:${Versions.jetty}"
         val archunit = "com.tngtech.archunit:archunit-junit5:${Versions.archunit}"
         val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
         val junitPlatformCommonsStrict = moduleWithStrictVersion(
             "org.junit.platform:junit-platform-commons", Versions.junitPlatform
         )
+        val jakartaServletApi = "jakarta.servlet:jakarta.servlet-api:${Versions.jakartaServlet}"
     }
 }
 
@@ -57,25 +58,16 @@ object SecurityFixes {
     val commonsBeanutils = "commons-beanutils:commons-beanutils:${Versions.commonsBeanutils}"
     val commonsIo = "commons-io:commons-io:${Versions.commonsIo}"
     val httpClient5 = "org.apache.httpcomponents.client5:httpclient5:${Versions.httpClient5}"
-
     val activemqArtemis = "org.apache.activemq:artemis-core-client:${Versions.artemis}"
-
     val jettyServer = "org.eclipse.jetty:jetty-server:${Versions.jetty}"
     val jettyHttp = "org.eclipse.jetty:jetty-http:${Versions.jetty}"
-    val jettyUtil = "org.eclipse.jetty:jetty-util:${Versions.jetty}"
-
     val logbackCore = "ch.qos.logback:logback-core:${Versions.logback}"
     val logbackClassic = "ch.qos.logback:logback-classic:${Versions.logback}"
-
     val xmlunit = "org.xmlunit:xmlunit-core:${Versions.xmlunit}"
-
     val bcprov = "org.bouncycastle:bcprov-jdk18on:${Versions.bcprov}"
-
     val nimbusJoseJwt = "com.nimbusds:nimbus-jose-jwt:${Versions.nimbusJoseJwt}"
-
     val nettyCommon = "io.netty:netty-common:${Versions.netty}"
     val nettyHandler = "io.netty:netty-handler:${Versions.netty}"
-
     val springWeb = "org.springframework:spring-web:${Versions.spring}"
     val springContext = "org.springframework:spring-context:${Versions.spring}"
     val springSecurityWeb = "org.springframework.security:spring-security-web:${Versions.springSecurity}"

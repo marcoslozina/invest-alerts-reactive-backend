@@ -1,6 +1,7 @@
 package com.marcoslozina.investalerts.config;
 
 
+import com.marcoslozina.investalerts.domain.port.AlertNotifierPort;
 import com.marcoslozina.investalerts.domain.port.AssetPriceProviderPort;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ class SecurityConfigTest {
 
     @MockBean
     private JwtDecoder jwtDecoder;
+
+    @MockBean
+    private AlertNotifierPort alertNotifierPort;
 
     @MockBean
     private AssetPriceProviderPort assetPriceProviderPort;

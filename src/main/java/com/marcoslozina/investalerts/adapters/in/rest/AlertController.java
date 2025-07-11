@@ -20,7 +20,11 @@ public class AlertController {
     private final AlertNotifierPort notifier;
     private final AlertRepository repository;
 
-    public AlertController(RegisterAlertService registerAlertService, AlertNotifierPort notifier, AlertRepository repository) {
+    public AlertController(
+        RegisterAlertService registerAlertService,
+        AlertNotifierPort notifier,
+        AlertRepository repository
+    ) {
         this.registerAlertService = registerAlertService;
         this.notifier = notifier;
         this.repository = repository;

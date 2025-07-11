@@ -26,8 +26,8 @@ public class AlertPrice {
 
     public boolean isTriggeredBy(double currentPrice) {
         return switch (type) {
-            case ABOVE -> currentPrice >= threshold;
-            case BELOW -> currentPrice <= threshold;
+            case GREATER_THAN -> currentPrice >= threshold;
+            case LESS_THAN -> currentPrice <= threshold;
         };
     }
 }

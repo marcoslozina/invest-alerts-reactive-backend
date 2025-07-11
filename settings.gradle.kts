@@ -10,7 +10,8 @@ dependencyResolutionManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
-        maven("https://repo.spring.io/milestone") // ✅ Necesario para spring-cloud
+        maven("https://repo.spring.io/milestone")
+        maven("https://jitpack.io")
     }
 }
 

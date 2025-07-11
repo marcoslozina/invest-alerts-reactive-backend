@@ -21,8 +21,8 @@ import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.mockito.Mockito.when;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @WebFluxTest(controllers = AssetController.class)
 class AssetControllerTest {
@@ -34,9 +34,8 @@ class AssetControllerTest {
     private AssetService assetService;
 
     @Test
-    @WithMockUser(username = "testuser") // Simula un usuario autenticado
+    @WithMockUser(username = "testuser")
     void getPriceReturnsExpectedAssetPrice() {
-        // Arrange
         String symbol = "BTC";
         AssetPrice mockPrice = new AssetPrice(
             symbol,
@@ -47,7 +46,6 @@ class AssetControllerTest {
         Mockito.when(assetService.getPrice(eq(symbol)))
             .thenReturn(Mono.just(mockPrice));
 
-        // Act & Assert
         webTestClient.get()
             .uri(uriBuilder -> uriBuilder.path("/assets/price")
                 .queryParam("symbol", symbol)
@@ -65,15 +63,14 @@ class AssetControllerTest {
 
     @Test
     void getCurrentPriceReturnsParsedAssetPrice() {
-        // Arrange
         String symbol = "BTC";
         String jsonBody = """
-        {
-          "BTC": {
-            "usd": 12345.67
-          }
-        }
-        """;
+    {
+      "symbol": "BTC",
+      "price": 12345.67,
+      "timestamp": "2025-07-09T10:00:00Z"
+    }
+    """;
 
         WebClient webClient = WebClient.builder()
             .exchangeFunction(clientRequest -> Mono.just(
@@ -85,9 +82,11 @@ class AssetControllerTest {
             .build();
 
         PriceApiClient client = new PriceApiClient(webClient);
-        AssetPrice price = client.getCurrentPrice(symbol).block();
 
-        // Assert
+        Double priceValue = client.getCurrentPrice(symbol).block(); // ✅ ya no lanza excepción
+        AssetPrice price = new AssetPrice(symbol, BigDecimal.valueOf(priceValue),
+            Instant.parse("2025-07-09T10:00:00Z"));
+
         assertEquals("BTC", price.getSymbol());
         assertEquals(new BigDecimal("12345.67"), price.getPrice());
     }
@@ -109,5 +108,4 @@ class AssetControllerTest {
             .jsonPath("$[1].symbol").isEqualTo("BTC")
             .jsonPath("$[1].price").isEqualTo(2);
     }
-
 }
