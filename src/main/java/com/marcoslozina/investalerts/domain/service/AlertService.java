@@ -34,16 +34,28 @@ public class AlertService {
                 };
 
                 if (triggered) {
-                    log.info("🚨 Alerta activada para {}: {} {} {}", alert.getSymbol(), currentPrice, alert.getType(), alert.getThreshold());
-                    meterRegistry.counter("alerts.activated", "symbol", alert.getSymbol()).increment();
+                    log.info("🚨 Alerta activada para {}: {} {} {}",
+                        alert.getSymbol(), currentPrice, alert.getType(), alert.getThreshold());
+                    meterRegistry
+                        .counter("alerts.activated", "symbol", alert.getSymbol())
+                        .increment();
                 } else {
-                    log.debug("✅ Alerta no activada para {}: precio {} vs umbral {}", alert.getSymbol(), currentPrice, alert.getThreshold());
+                    log.debug("✅ Alerta no activada para {}: precio {} vs umbral {}",
+                        alert.getSymbol(), currentPrice, alert.getThreshold());
                 }
 
-                return new AlertResult(alert.getSymbol(), currentPrice, alert.getThreshold(), triggered);
+                return new AlertResult(
+                    alert.getSymbol(),
+                    currentPrice,
+                    alert.getThreshold(),
+                    triggered
+                );
             })
-            .doOnError(error -> log.error("❌ Error verificando alerta {}: {}", alert.getSymbol(), error.getMessage()))
-            .doFinally(signal -> log.debug("✔️ Verificación completada para {} con signal: {}", alert.getSymbol(), signal))
-            .defaultIfEmpty(new AlertResult(alert.getSymbol(), null, alert.getThreshold(), false));
+            .doOnError(error -> log.error(
+                "❌ Error verificando alerta {}: {}", alert.getSymbol(), error.getMessage()))
+            .doFinally(signal -> log.debug(
+                "✔️ Verificación completada para {} con signal: {}", alert.getSymbol(), signal))
+            .defaultIfEmpty(new AlertResult(
+                alert.getSymbol(), null, alert.getThreshold(), false));
     }
 }
