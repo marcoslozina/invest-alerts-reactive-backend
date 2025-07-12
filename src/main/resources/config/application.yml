@@ -76,3 +76,10 @@ springdoc:
     enabled: true
   api-docs:
     enabled: true
+
+notifier:
+  webhook:
+    url: https://webhook.site/tu-id-de-prueba  # Reemplazá con tu endpoint real
+  telegram:
+    bot-token: 123456:ABC-DEF                  # Reemplazá con tu token real
+    chat-id: 987654321                         # Reemplazá con tu chat ID real
