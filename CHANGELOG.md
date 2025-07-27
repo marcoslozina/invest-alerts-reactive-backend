@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.0](https://github.com/marcoslozina/invest-alerts-reactive-backend/compare/v1.0.1...v1.1.0) (2025-07-27)
+
+
+### Features
+
+* add micrometer, step 7 ([ca7b4a9](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/ca7b4a953cfebc018353c5e0637b40962e11f754))
+* add test ([ccc59ae](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/ccc59ae9d289de83aaf2cc025296e5b9d9f160d8))
+* step 6 complete ([0585d5a](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/0585d5a651cb7eebe33ae85bdafb431ecf3b3192))
+
+
+### Bug Fixes
+
+* add test ([f737647](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/f7376476956c6d3ddec03ce2e98f37dd6bb8ad59))
+* fix applicationTest ([f65f971](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/f65f97122696b3f21b385f0f782a3c50d0edad1d))
+* fix stile ([0ab0b64](https://github.com/marcoslozina/invest-alerts-reactive-backend/commit/0ab0b6491646927367cf28837df3ecc128c7b3c7))
+
 ## [1.0.1](https://github.com/marcoslozina/invest-alerts-reactive-backend/compare/v1.0.0...v1.0.1) (2025-07-04)
 
 
