@@ -1,6 +1,6 @@
-# 💹 Sistema de Alertas Financieras – Caso de Estudio Reactivo
+# 💹 Financial Alerts System – Reactive Case Study
 
-### 🧪 Estado del Proyecto
+### 🧪 Project Status
 
 [![CI](https://img.shields.io/badge/CI-passing-brightgreen)]()
 [![Total Coverage](https://img.shields.io/badge/Total_Coverage-91.3%25-brightgreen)]()
@@ -13,47 +13,47 @@
 
 ---
 
-## 📘 Descripción
+## 📘 Description
 
-Este proyecto implementa un **sistema de alertas financieras en tiempo real**, desarrollado como **caso de estudio educativo y profesional**.  
-El backend está construido en **Java 21 con Spring Boot WebFlux**, siguiendo principios de **arquitectura hexagonal**, y el frontend es una SPA desarrollada en **React + Vite**.
+This project implements a **real-time financial alerts system**, built as an **educational and professional case study**.
+The backend is built with **Java 21 and Spring Boot WebFlux**, following **hexagonal architecture** principles, and the frontend is a SPA built with **React + Vite**.
 
-La solución permite:
-- Consultar precios actuales e históricos de criptoactivos.
-- Registrar alertas de precio personalizadas.
-- Recibir notificaciones en tiempo real vía streaming (SSE).
-
----
-
-## ⚙️ Backend – Roadmap técnico
-
-| Paso | Funcionalidad principal                                    | Conceptos clave                            |
-|------|------------------------------------------------------------|---------------------------------------------|
-| 1️⃣   | `GET /assets/price` – Precio actual                       | WebClient, Mono, puertos                    |
-| 2️⃣   | `GET /assets/history` – Historial in-memory               | Flux, almacenamiento reactivo, transformación |
-| 3️⃣   | `POST /alerts` – Registro de alertas                      | Validación, DTOs, dominio hexagonal         |
-| 4️⃣   | `GET /alerts/stream` – Emisión por SSE                    | Intervalo, filtros, backpressure            |
-| 5️⃣   | Resiliencia y errores                                     | timeout, retryWhen, manejo global           |
-| 6️⃣   | Tests y pruebas integradas                                | StepVerifier, WebClient, WireMock           |
-| 7️⃣   | Observabilidad y cache                                    | doOnNext, Micrometer, logging               |
-| 8️⃣   | (Opcional) Webhooks o Telegram                            | Puerto de salida con estrategia             |
-| 9️⃣   | (Opcional) Seguridad reactiva con JWT o Keycloak          | Filtros + autorización                      |
+The solution supports:
+- Querying current and historical crypto asset prices.
+- Registering custom price alerts.
+- Receiving real-time notifications via streaming (SSE).
 
 ---
 
-## 🧑‍💻 Frontend – Roadmap React
+## ⚙️ Backend – Technical Roadmap
 
-| Paso        | Funcionalidad                                  | Herramientas clave                      |
-|-------------|------------------------------------------------|------------------------------------------|
-| 1️⃣          | Crear base con Vite + TypeScript               | Vite, React, TS                          |
-| 2️⃣          | Mostrar precio actual (`GET /assets/price`)    | Axios, Hook, Card                        |
-| 3️⃣          | Mostrar gráfico de historial (`/assets/history`)| Recharts, graficación dinámica          |
-| 4️⃣          | Formulario de alertas                          | Formik, Yup, validaciones                |
-| 5️⃣          | Visualizar alertas activas                     | Server-Sent Events (SSE), streaming      |
+| Step | Main Feature                                               | Key Concepts                                 |
+|------|--------------------------------------------------------------|-----------------------------------------------|
+| 1️⃣   | `GET /assets/price` – Current price                        | WebClient, Mono, ports                        |
+| 2️⃣   | `GET /assets/history` – In-memory history                  | Flux, reactive storage, transformation        |
+| 3️⃣   | `POST /alerts` – Alert registration                        | Validation, DTOs, hexagonal domain            |
+| 4️⃣   | `GET /alerts/stream` – SSE emission                         | Interval, filters, backpressure               |
+| 5️⃣   | Resilience and error handling                               | timeout, retryWhen, global handling           |
+| 6️⃣   | Tests and integration testing                               | StepVerifier, WebClient, WireMock             |
+| 7️⃣   | Observability and cache                                    | doOnNext, Micrometer, logging                 |
+| 8️⃣   | (Optional) Webhooks or Telegram                             | Outbound port with strategy pattern           |
+| 9️⃣   | (Optional) Reactive security with JWT or Keycloak           | Filters + authorization                       |
 
-## ☕ Donaciones
+---
 
-Si este proyecto o el libro te fueron útiles, podés apoyar el desarrollo con una donación. Tu apoyo ayuda a mantener y mejorar este tipo de contenido educativo.
+## 🧑‍💻 Frontend – React Roadmap
+
+| Step        | Feature                                          | Key Tools                                 |
+|-------------|---------------------------------------------------|----------------------------------------------|
+| 1️⃣          | Set up base project with Vite + TypeScript        | Vite, React, TS                              |
+| 2️⃣          | Display current price (`GET /assets/price`)       | Axios, Hook, Card                            |
+| 3️⃣          | Display history chart (`/assets/history`)         | Recharts, dynamic charting                   |
+| 4️⃣          | Alert creation form                                | Formik, Yup, validation                      |
+| 5️⃣          | Display active alerts                              | Server-Sent Events (SSE), streaming          |
+
+## ☕ Donations
+
+If this project or the book was useful to you, you can support its development with a donation. Your support helps maintain and improve this kind of educational content.
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/codefuel)
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=4TYGJ5S8CLX8J)
